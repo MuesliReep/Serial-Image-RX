@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
+QT       += serialport
 
 QT       -= gui
 
@@ -16,7 +17,9 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    Output.cpp
+    Output.cpp \
+    Datastream.cpp
 
 HEADERS += \
-    Output.h
+    Output.h \
+    Datastream.h

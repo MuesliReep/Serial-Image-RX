@@ -1,14 +1,12 @@
-#include <QCoreApplication>
+
+#include <QApplication>
+
+#include "Output.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
-
+    QApplication app(argc, argv);
     Output output;
-    output.initialise();
-
-    Datastream data(&output);
-    data.initialise();
-
-    return a.exec();
+    output.show();
+    return app.exec();
 }

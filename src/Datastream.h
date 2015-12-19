@@ -1,11 +1,12 @@
-#ifndef DATASTREAM_H
-#define DATASTREAM_H
+#ifndef DataStream_H
+#define DataStream_H
 
 #include <QThread>
 #include <QMutex>
 #include <QWaitCondition>
+#include <QDebug>
 
-#include <QtSerialPort/QtSerialPort>
+#include <QtSerialPort/QSerialPort>
 #include <QTime>
 
 class DataStream : public QThread
@@ -13,11 +14,12 @@ class DataStream : public QThread
     Q_OBJECT
 
 public:
-    DataStream(Output *output, QObject *parent = 0);
-    void initialise();
+    DataStream(QObject *parent = 0);
+    ~DataStream();
 
-    void startSlave(const QString &portName, int waitTimeout, const QString &response);
+    void startStream(const QString &portName, int waitTimeout, const QString &response);
     void run();
+    void run2();
 
 private:
     QString portName;
@@ -25,11 +27,20 @@ private:
     int waitTimeout;
     QMutex mutex;
     bool quit;
+    bool portOpen;
+    bool requestFrame;
+
+    void sendRequestFrame(QSerialPort *serial);
 
 signals:
-    void request(const QString &s);
-    void error(const QString &s);
-    void timeout(const QString &s);
+  void request(const QString &s);
+  void error(const QString &s);
+  void timeout(const QString &s);
+  void dataRX(QByteArray d);
+
+public slots:
+
 };
 
-#endif // DATASTREAM_H
+
+#endif // DataStream_H

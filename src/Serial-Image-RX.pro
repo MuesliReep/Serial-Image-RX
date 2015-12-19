@@ -1,25 +1,19 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2015-04-16T02:11:32
-#
-#-------------------------------------------------
 
-QT       += core
-QT       += serialport
 
-QT       -= gui
+ QT       += core gui
+ QT       += widgets serialport
 
+  
 TARGET = Serial-Image-RX
-CONFIG   += console
-CONFIG   -= app_bundle
-
 TEMPLATE = app
 
-
-SOURCES += main.cpp \
-    Output.cpp \
-    Datastream.cpp
-
 HEADERS += \
+	Decoder.h \
     Output.h \
-    Datastream.h
+    DataStream.h
+
+SOURCES += \
+    main.cpp \
+	Decoder.cpp \
+    Output.cpp \
+    DataStream.cpp
